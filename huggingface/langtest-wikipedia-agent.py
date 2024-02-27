@@ -5,10 +5,8 @@ from langchain.agents import load_tools
 from langchain.agents import initialize_agent
 from langchain.agents import AgentType
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
 
-
-def get_agent(topic):
+def get_agent(subject):
     repo_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 
     llm = HuggingFaceEndpoint(
@@ -16,7 +14,7 @@ def get_agent(topic):
     )
     tools = load_tools(["wikipedia"], llm=llm)
     agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
-    return agent.run("How long do we know about " + topic)
+    return agent.run("How long do we know about " + subject)
 
 
 # UI

@@ -1,7 +1,1 @@
-bin
-etc
-lib
-include
-share
-pyvenv.cfg
-.env
+.venv

@@ -4,8 +4,10 @@ A collection of langchain sample scripts
 ## Samples using Ollama
 
 * Install and run Ollama : https://ollama.com
-* Install python requirements and pull mistral llm :
+* Create a local virtualenv, install python requirements and pull mistral llm :
 ```
+python -m venv .venv
+source .venv/bin/activate
 pip3 install -r requirements
 ollama pull mistral
 ```
@@ -35,11 +37,24 @@ streamlit run ollama/langtest-app-youtube.py
 ```
 
 ## Samples using HuggingFace
-Create a .env file with huggingface api token generated on https://huggingface.co
+Create a .env file with huggingface API Token generated on https://huggingface.co and source it
 ```
-cat << EOF > .env
-HUGGINGFACEHUB_API_TOKEN="<TOKEN>"
-EOF
+echo -e "export HUGGINGFACEHUB_API_TOKEN=\"<TOKEN>\"" >> .venv/bin/activate && source .venv/bin/activate
 ```
 
 ### langtest-wikipedia-agent
+Simple app to get information from wikipedia since how long do we know about a topic.
+Demonstrates the use of a wikipedia langchain agent/tool.
+```
+streamlit run huggingface/langtest-wikipedia-agent.py
+```
+
+Demonstrates the use of a wikipedia langchain agent/tool.
+
+### langtest-prompt-multi-inputs
+Simple app to get the winner country of a world cup finals
+Demonstrates the use of Prompt and LLMChain with multiple inputs
+```
+streamlit run huggingface/langtest-prompt-multi-inputs.py
+```
+

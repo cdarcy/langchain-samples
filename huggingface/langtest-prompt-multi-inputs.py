@@ -2,26 +2,23 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 import os
 import streamlit as st
-from langchain.llms import Ollama
 
 import datetime
 
 from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
-
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
 
 
 def get_final_winner(sport, year):
     # Prompt
     prompt = PromptTemplate(
         input_variables=["sport_type", "year_of_final"],
-        template="Who won the {sport_type} World Cup in the year {year_of_final} ?",
+        template="Who won the {sport_type} World Cup final in {year_of_final} ?",
     )
 
     repo_id = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 
     llm = HuggingFaceEndpoint(
-       repo_id=repo_id, temperature=0.5, token=os.environ["HUGGINGFACEHUB_API_TOKEN"]
+        repo_id=repo_id, temperature=0.5, token=os.environ["HUGGINGFACEHUB_API_TOKEN"]
     )
     # Chain
     answer_chain = LLMChain(llm=llm, prompt=prompt, output_key='winner', verbose=True)
