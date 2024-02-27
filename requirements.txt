@@ -1,0 +1,7 @@
+langchain
+streamlit
+streamlit_chat
+wikipedia
+huggingface_hub
+transformers
+torch
